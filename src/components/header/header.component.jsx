@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import CartIcon from '../cart-icon/cart-icon.component';
-import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import CartDropDownContainer from '../cart-dropdown/cart-dropdown.container';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
@@ -22,12 +22,12 @@ const Header = ({ currentUser, hidden }) => (
             <OptionLink to='/contact'>CONTACT</OptionLink>
             {
                 currentUser ?
-                    <OptionLink as='div' onClick={() => auth.signOut()}>SIGN OUT</OptionLink> :
+                    <OptionLink as='div' to='' onClick={() => auth.signOut()}>SIGN OUT</OptionLink> :
                     <OptionLink to='/signin'>SIGN IN</OptionLink>
             }
             <CartIcon />
         </OptionsContainer>
-        {hidden ? null : <CartDropdown />}
+        {hidden ? null : <CartDropDownContainer />}
     </HeaderContainer>
 )
 
